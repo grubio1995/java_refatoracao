@@ -75,7 +75,7 @@ public class PetService {
             json.addProperty("peso", peso);
 
             String uri = "http://localhost:8080/abrigos/" + idOuNome + "/pets";
-            HttpResponse<String> response = client.dispararRequisicaoPost(json, uri);
+            HttpResponse<String> response = client.dispararRequisicaoPost(uri, json);
             int statusCode = response.statusCode();
             String responseBody = response.body();
             if (statusCode == 200) {
