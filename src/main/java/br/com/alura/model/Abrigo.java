@@ -1,11 +1,18 @@
 package br.com.alura.model;
 
+import java.util.List;
+
 public class Abrigo {
 
     private Long id;
     private String nome;
     private String telefone;
     private String email;
+
+    private Pet[] pets;
+
+    public Abrigo() {
+    }
 
     public Abrigo(String nome, String telefone, String email) {
         this.nome = nome;
@@ -44,4 +51,7 @@ public class Abrigo {
         this.email = email;
     }
 
+    public Pet[] getPets() {
+        return pets;
+    }
 }
