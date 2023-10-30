@@ -1,6 +1,8 @@
 package br.com.alura.model;
 
 public class Pet {
+
+    private int id;
     private String tipo;
     private String nome;
     private String raca;
@@ -15,6 +17,14 @@ public class Pet {
         this.idade = idade;
         this.cor = cor;
         this.peso = peso;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTipo() {
