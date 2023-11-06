@@ -4,16 +4,17 @@ import br.com.alura.client.ClientHttpConfiguration;
 import br.com.alura.model.Abrigo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.Matchers;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.net.http.HttpResponse;
 
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-class AbrigoServiceTest {
+
+public class AbrigoServiceTest {
 
     private ClientHttpConfiguration client = mock(ClientHttpConfiguration.class);
     private AbrigoService abrigoService = new AbrigoService(client);
@@ -32,7 +33,7 @@ class AbrigoServiceTest {
         System.setOut(printStream);
 
         when(response.body()).thenReturn("[{"+abrigo.toString()+"}]");
-        when(client.dispararRequisicaoGet(Matchers.anyString())).thenReturn(response);
+        when(client.dispararRequisicaoGet(anyString())).thenReturn(response);
 
         abrigoService.listarAbrigos();
 
