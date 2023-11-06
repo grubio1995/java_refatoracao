@@ -6,9 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.net.http.HttpResponse;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class AbrigoService {
 
@@ -23,14 +21,8 @@ public class AbrigoService {
         HttpResponse<String> response = client.dispararRequisicaoGet(uri);
         String responseBody = response.body();
         List<Abrigo> abrigos = Arrays.stream(new ObjectMapper().readValue(responseBody, Abrigo[].class)).toList();
-        System.out.println("Abrigos cadastrados:");
-        for (Abrigo abrigo : abrigos) {
-            long id = abrigo.getId();
-            String nome = abrigo.getNome();
-            System.out.println(id + " - " + nome);
-        }
+        mostrarAbrigos(abrigos);
     }
-
     public void cadastrarAbrigo() throws IOException, InterruptedException {
         System.out.println("Digite o nome do abrigo:");
         String nome = new Scanner(System.in).nextLine();
@@ -53,4 +45,18 @@ public class AbrigoService {
             System.out.println(responseBody);
         }
     }
+
+    private static void mostrarAbrigos(List<Abrigo> abrigos) {
+        if(abrigos.isEmpty()){
+            System.out.println("Não há abrigos cadastrados");
+        } else{
+            System.out.println("Abrigos cadastrados:");
+            for (Abrigo abrigo : abrigos) {
+                long id = abrigo.getId();
+                String nome = abrigo.getNome();
+                System.out.println(id + " - " + nome);
+            }
+        }
+    }
+
 }
